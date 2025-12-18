@@ -12,8 +12,7 @@ L'objectif ? Une infrastructure **résiliente**, **scalable**, et **Low Cost** (
 
 ## Le Plan de Bataille
 
-### [Partie 1 : Les Fondations (Kubernetes pour 50€)]
-*À venir.*
+### [Partie 1 : Les Fondations (Kubernetes pour 50€)](./01-cluster-k3s-50-euros.md)
 *Article actuel.*
 - **Le Hardware** : Pourquoi des VPS OVH "gamme desktop" écrasent le Cloud Public.
 - **Le Cluster** : K3s en Haute Disponibilité (HA) sans se ruiner.
@@ -31,9 +30,10 @@ L'objectif ? Une infrastructure **résiliente**, **scalable**, et **Low Cost** (
 *À venir.*
 - **Le Problème** : Datadog est génial, mais coûte plus cher que mes serveurs.
 - **La Stack** :
-    - **VictoriaMetrics** : Une alternative à Prometheus plus légère et performante.
-    - **Grafana** : Dashboards unifiés (Infra + Business metrics).
-    - **Loki** : Gestion des logs centralisée.
+    - **La base** : L'écosystème Prometheus & AlertManager.
+    - **VictoriaMetrics** : Une alternative à Prometheus plus légère, plus performante et stockable à long terme (Remote Write).
+    - **VictoriaLogs** : Pour arrêter de se battre avec ElasticSearch ou Loki, une solution simple et ultra-rapide pour les logs.
+    - **Grafana** : La vitre unique pour visualiser tout ça.
 
 ### Partie 4 : GitOps & Déploiement Continu (L'Usine)
 *À venir.*
@@ -45,10 +45,9 @@ L'objectif ? Une infrastructure **résiliente**, **scalable**, et **Low Cost** (
 
 ### Partie 5 : La Stack Applicative (Le Monolithe Distribué)
 *À venir.*
-- **L'Architecture** : Pourquoi j'évite les micro-services au début.
 - **La Stack** :
     - **Back** : Django (Python) pour la robustesse.
-    - **Front** : React & React Native (Web + Mobile avec 90% de code partagé).
+    - **Front** : React & React Native.
     - **Containerization** : Dockerfile optimisés multi-stage.
 
 ### Partie 6 : AI Engineering & Agents (Le Cœur du Réacteur)
@@ -57,13 +56,13 @@ L'objectif ? Une infrastructure **résiliente**, **scalable**, et **Low Cost** (
 - **L'Implémentation** :
     - **MCP (Model Context Protocol)** : Création d'un serveur MCP pour donner du contexte à l'IA sur l'app.
     - **Agents** : Comment le Chatbot peut lire la base de données et modifier le plan d'entraînement d'un utilisateur.
-    - **Generation** : Pipelines de génération de contenu via LLM.
+    - **Generation** : Pipelines de génération de contenu via llm avec LangGraph.
 
 ### Partie 7 : AI-Assisted Workflow (Le Développeur Augmenté)
 *À venir.*
 - **Le Métier** : Comment je code 3x plus vite seul.
 - **Le Workflow** :
-    - Utilisation des **LLMs pour coder** (Cursor, Copilot).
+    - Utilisation des **LLMs pour coder** (Cursor, Copilot, Antigravity, Claude Code).
     - Patterns de "Code Review" par IA.
     - Comment l'architecture est pensée pour être "AI-readable".
 
@@ -72,4 +71,11 @@ L'objectif ? Une infrastructure **résiliente**, **scalable**, et **Low Cost** (
 - **Services Transverses** :
     - **Langfuse Self-Hosted** : Tracing et Debugging des appels LLM (indispensable/coûteux en SaaS).
     - **Vault** : Gestion des secrets centralisée hors du repo Git.
+    - **Cert-manager** : Gestion des certificats SSL.
+
+### Partie 9 : La Science du Sport (Bonus Track)
+*À venir.*
+- **Physiologie** : Analyse de la littérature scientifique sur l'entraînement.
+- **Modélisation** : Comment coder la charge d'entraînement (Banister, TRIMP, etc.).
+- **Algorithmes** : Transformer des papiers de recherche en features concrètes pour les athlètes.
 
