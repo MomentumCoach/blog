@@ -27,7 +27,9 @@ Sur ces serveurs, je n'installe pas la distribution Kubernetes standard (qui est
 Une idée reçue tenace est que K3s est une version "au rabais" pour l'IoT. C'est faux. K3s est une distribution **certifiée CNCF**, taillée pour la production.
 1.  **Embedded HA (Haute Disponibilité)** : C'est la killer-feature. K3s intègre une gestion automatique de **etcd** (la base de données distribuée du cluster). Avec 3 nœuds, vous avez un quorum HA immédiat et robuste, sans avoir à gérer des certificats complexes ou des topologies externes.
 2.  **Ressources** : Une distribution K8s "Upstream" (type `kubeadm`) avec tous les plugins cloud peut consommer 2GB+ de RAM juste pour tourner à vide. K3s, en retirant les drivers inutiles (AWS, Azure, GCP Storage...), tourne avec **<500MB de RAM**. Sur des VPS de 24Go, c'est autant de gagné pour vos applis.
-3.  **Simplicité & Flexibilité** : K3s est un binaire unique "Zero Dependencies". Par défaut, il vient avec Flannel pour le réseau, mais ici **nous le désactivons** (`--flannel-backend=none`). Pourquoi ? Pour utiliser **Cilium** et sa puissance eBPF (sécurité, observabilité, performance). K3s nous laisse le choix, et c'est crucial pour la suite. D'ailleurs, le networking Kubernetes et Cilium méritent bien plus qu'un paragraphe : ce sera le sujet d'un article complet à venir.
+3.  **Simplicité & Flexibilité** : K3s est un binaire unique "Zero Dependencies". Par défaut, il vient avec Flannel pour le réseau, mais ici **nous le désactivons** (`--flannel-backend=none`). Pourquoi ? Pour utiliser **Cilium** et sa puissance eBPF (sécurité, observabilité, performance).
+    
+    *Le networking Kubernetes, la sécurité inter-services et la magie eBPF méritent un espace dédié. Ce sera le sujet exclusif de la **Partie 2** de cette série. Ici, nous nous concentrons sur l'installation des fondations.*
 
 Voici à quoi ressemble la configuration pour cibler mes serveurs avec Ansible. C'est tout ce dont j'ai besoin pour démarrer l'installation :
 
@@ -111,7 +113,13 @@ Pour exposer mes services, j'utilise une entrée DNS de type `A` qui pointe vers
     1.  **Load Balancer** : Placer un petit VPS frontal avec HAProxy/Nginx.
     2.  **IP Flottante (Failover IP)** : Certains hébergeurs (comme OVH) permettent d'acheter une IP qui n'est pas attachée physiquement à un serveur mais que l'on peut basculer d'un serveur à l'autre via API. Plutôt que de bricoler un script, l'idéal est d'utiliser un **Operator Kubernetes** (ou un Cloud Controller Manager) qui pilote cela. Si le nœud maître tombe, l'opérateur détecte la panne et appelle l'API de l'hébergeur pour réassigner l'IP flottante à un nœud sain en quelques secondes. C'est du Failover automatique et natif.
 
-### 2. La Complexité du Scaling
+### 2. L'absence de Réseau Privé Physique (vRack) & Virtualization
+Contrairement aux offres Bare Metal ou au Cloud Public haut de gamme (AWS VPC), sur des VPS low-cost :
+*   **Pas de Network Isolation** : Vos serveurs sont sur un grand réseau public partagé. N'importe qui sur le même subnet pourrait théoriquement "sniffer" votre trafic s'il n'est pas chiffré.
+*   **La Virtualisation** : Vous partagez le CPU physique avec d'autres clients ("Noisy Neighbors"). Si un voisin mine du Bitcoin, vous pouvez sentir un léger ralentissement.
+*   **La Solution (WireGuard)** : C'est pour ça que je n'utilise JAMAIS l'IP publique pour la communication inter-nœuds. J'ai monté une mesh VPN **WireGuard** transparente. Pour Kubernetes, c'est comme si les serveurs étaient sur un switch privé à la maison, totalement chiffré et isolé.
+
+### 3. La Complexité du Scaling
 Ajouter un nœud ici n'est pas juste un curseur à glisser dans une interface web GUI.
 *   **La réalité** : Il faut commander le VPS, attendre la livraison, lancer le playbook Ansible pour le sécuriser, le joindre au cluster WireGuard, puis l'ajouter au cluster K3s.
 *   **L'atténuation** : C'est là que l'Infrastructure as Code (**IaC**) est vitale. Avec **Terraform** pour provisionner les serveurs et **Ansible** pour la configuration, j'ai automatisé 90% du processus "Day 0". Mon scaling consiste à changer une variable `count = 4` et lancer une pipeline. Sans ça, ce serait ingérable.
