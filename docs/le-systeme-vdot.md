@@ -125,17 +125,17 @@ Je lui donne une consigne stricte : *"Ne regarde pas ta montre. Cours à la sens
 Je voulais vérifier si la prédiction mathématique collait à sa physiologie réelle du moment.
 Les données Strava sont tombées :
 
-*   Bloc 1 : **3:53/km** (Un poil prudent)
-*   Bloc 2 : **3:51/km** ( Ça se règle)
-*   Bloc 3 : **3:50/km** (Pile dessus)
+*   Bloc 1 : **3:53/km** 
+*   Bloc 2 : **3:51/km**
+*   Bloc 3 : **3:50/km**
 
 <div style="display: flex; gap: 10px; justify-content: center;">
   <img src="../images/arthur-split-1.png" width="300" />
   <img src="../images/arthur-split-2.png" width="300" />
 </div>
 
-La précision est effrayante. Arthur s'est calé naturellement sur l'allure cible, sans même la connaître.
-Mon filtre de Kalman, avec ses milliers de points de données bruyants, n'avait jamais réussi à prédire une allure avec une telle fiabilité. Une équation simple mais robuste, alimentée par une seule donnée de qualité, a visé juste du premier coup.
+La précision est incroyable. Arthur s'est calé naturellement sur l'allure cible, en se fiant uniquement à ses sensations et à sa fréquence cardiaque, sans contrôler son allure en temps réel.
+Une méthode éprouvée, alimentée par une seule donnée de qualité, a visé juste du premier coup.
 
 ---
 

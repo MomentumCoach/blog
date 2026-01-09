@@ -68,3 +68,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/MomentumCoach
+  analytics:
+    provider: google
+    property: G-TYK2K6JKVB
