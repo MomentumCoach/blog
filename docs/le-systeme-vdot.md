@@ -12,8 +12,11 @@ Voici l'histoire technique de ce pivot, et pourquoi la simplicité gagne toujour
 
 ## 1. L'Approche "Ingénieur" : Le Filtre de Kalman
 
-Mon idée initiale était de traiter la condition physique d'un athlète comme un **système dynamique bruité**.
-En théorie du signal, quand on veut estimer l'état caché d'un système (ici, la forme de l'athlète) à partir de mesures imparfaites (les données Strava/Garmin), l'outil roi est le **Filtre de Kalman**.
+Mon idée initiale était de traiter la condition physique d'un athlète comme un **système dynamique observable**.
+
+L'ambition était majeure : au lieu de demander à l'utilisateur de faire un test initial, je voulais **estimer son profil physiologique complet (VO2max, Seuil Anaérobie)** simplement en analysant son historique Strava (les "Big Data").
+
+En théorie du signal, quand on veut estimer l'état caché d'un système (ici, le niveau physio) à partir de mesures imparfaites (les footings du dimanche), l'outil roi est le **Filtre de Kalman**.
 
 ### La Théorie
 Le modèle se base sur deux équations matricielles :
@@ -30,15 +33,22 @@ Le modèle se base sur deux équations matricielles :
     *   $z_k$ : La performance observée (ex: allure cardiaque sur un footing).
     *   $v_k$ : Bruit de mesure (GPS imprécis, dérive cardiaque, chaleur...).
 
-### La Promesse
-L'algorithme devait ingérer chaque sortie (footing, fractionné, sortie longue) et mettre à jour sa "croyance" (covariance d'erreur $P_k$) sur le niveau réel de l'utilisateur.
-Si l'utilisateur faisait un footing lent mais avec un cardio très bas, le filtre devait détecter une amélioration de l'efficacité et augmenter le score de forme. "Automagique".
+### La Promesse : "Live & Continuous Update"
+La grande force théorique de ce modèle est sa capacité à se mettre à jour en continu, sans nouveau test maximal.
+L'algorithme ingère chaque sortie :
+*   Si vous courez votre footing habituel à 10km/h mais avec 5 puls/min de moins que d'habitude...
+*   Le filtre détecte une réduction de l'erreur entre la prédiction et la mesure.
+*   Il met à jour sa "Croyance" : votre endurance fondamentale s'est améliorée -> **votre Seuil a augmenté**.
+
+C'était le graal : un plan d'entraînement qui s'adapte dynamiquement après chaque séance, même une récupération active. "Automagique".
 
 ### La Réalité : "Garbage In, Garbage Out"
 En pratique, c'était un enfer à calibrer.
 Le Filtre de Kalman est optimal si le bruit est gaussien et le modèle linéaire. Or, la physiologie humaine n'est ni l'un ni l'autre.
-*   **Bruit non-gaussien** : Un GPS qui décroche ou une ceinture cardio mal humidifiée créent des aberrations (outliers) que le filtre interprète mal.
-*   **Manque d'observabilité** : La plupart des amateurs font 80% de leurs sorties en endurance fondamentale. Avec ces seules données, il est mathématiquement difficile de distinguer une amélioration de la VMA d'une simple fatigue ou d'une variation de température.
+
+-   **Bruit non-gaussien** : Le filtre est conçu pour lisser du bruit statistique "normal" (Gaussien). Mais un GPS qui décroche ou un bug cardio ne sont pas du bruit, ce sont des aberrations massives (*outliers*). Le filtre, fonctionnant sur des moyennes pondérées, se fait "aspirer" par ces valeurs extrêmes au lieu de les ignorer.
+
+-   **Manque d'observabilité** : La plupart des amateurs font 80% de leurs sorties en endurance fondamentale à basse intensité. Avec ces seules données, il est mathématiquement très difficile (voire impossible) de distinguer une amélioration du **VO2max** d'une variation de la fatigue ou de la température. Le rapport Signal/Bruit est trop faible sur les footings lents.
 
 J'avais construit une usine à gaz qui essayait de deviner la VMA d'un coureur à partir de ses footings de récupération. C'était instable et frustrant.
 
