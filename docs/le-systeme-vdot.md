@@ -67,15 +67,20 @@ Au lieu d'essayer de deviner le niveau, ils le mesurent.
 Le système repose sur deux régressions fondamentales :
 
 1.  **Le coût en oxygène ($VO_2$) d'une vitesse donnée ($v$)** :
+
     $$VO_2 = 0.182258 \cdot v + 0.000104 \cdot v^2 - 4.60$$
+
     *Cette formule estime combien d'oxygène vous consommez pour courir à une vitesse $v$ (m/min).*
 
 2.  **Le pourcentage de $VO_2max$ tenable sur une durée ($t$)** :
-    *%VO_2max$ = 0.8 + 0.1894393 \cdot e^{-0.012778 \cdot t} + 0.2989558 \cdot e^{-0.1932605 \cdot t}$
+
+    $$\%VO\_2max = 0.8 + 0.1894393 \cdot e^{-0.012778 \cdot t} + 0.2989558 \cdot e^{-0.1932605 \cdot t}$$
+
     *Cette formule décrit la chute de la capacité à tenir un % de sa puissance max à mesure que le temps passe.*
 
 En combinant ces deux courbes, on obtient le **VDOT**.
 Contrairement au VO2max de laboratoire (qui mesure la taille du "moteur"), le VDOT mesure la performance effective. Il encapsule :
+
 *   Le **VO2max** (cardio).
 *   L'**Économie de Course** (biomécanique/rendement).
 *   Le **Seuil Lactique** (endurance).
