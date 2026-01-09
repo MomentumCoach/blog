@@ -1,4 +1,4 @@
-[← Retour au sommaire de la série](./00-series-summary.md)
+[← Retour à l'accueil](./index.md)
 
 # Comment j'ai construit un Cluster Kubernetes de Production pour 50€/mois (vs 900€+ sur AWS)
 

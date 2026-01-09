@@ -33,8 +33,10 @@ theme:
 
 nav:
   - Home: index.md
-  - Blog:
+  - Build in Public:
       - 'Cluster K3s à 50€': 01-cluster-k3s-50-euros.md
+  - Product & Science:
+      - 'Le système VDOT': le-systeme-vdot.md
 
 
 markdown_extensions:
