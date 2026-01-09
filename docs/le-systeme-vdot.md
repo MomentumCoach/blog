@@ -1,10 +1,10 @@
-# Pourquoi on a jeté notre "IA" à la poubelle (pour une méthode éprouvée)
+# Pourquoi nous avons mis notre "IA" en pause (pour revenir aux fondamentaux)
 
 Quand on lance une startup Tech en 2025, la tentation est grande de mettre de l'"IA" et du Machine Learning partout.
 C'est vendeur, c'est "hype", et ça flatte l'ego technique.
 
 C'est exactement le piège dans lequel je suis tombé avec **Momentum Coach**.
-Je voulais construire le moteur de recommandation le plus avancé du marché. Résultat ? J'ai fini par tout jeter pour utiliser une méthodologie qui a fait ses preuves sur des milliers d'athlètes olympiques et amateurs.
+Je voulais construire le moteur de recommandation le plus avancé du marché. Résultat ? J'ai réalisé que la complexité n'est pas toujours la réponse. J'ai choisi de bâtir **Momentum Coach** sur une base méthodologique éprouvée (VDOT), gardant l'IA pour ce qu'elle fait de mieux : l'optimisation à la marge.
 
 Voici l'histoire technique de ce pivot, et pourquoi la simplicité gagne toujours, même face aux algorithmes les plus sophistiqués.
 
@@ -134,10 +134,13 @@ Mon filtre de Kalman, avec ses milliers de points de données bruyants, n'avait 
 
 ---
 
-## Conclusion : Less is More
+## Conclusion : Une base solide pour mieux construire le futur
 
-En tant qu'ingénieurs, nous avons tendance à sur-complexifier. Nous pensons que plus de données + plus d'algos = meilleur résultat.
-C'est souvent faux.
+En tant qu'ingénieurs, nous avons tendance à sur-complexifier trop tôt.
+Ce pivot vers le VDOT ne marque pas la fin de nos ambitions algorithmiques, mais **le début d'une approche plus mature**.
 
-Dans le sport comme ailleurs, **la qualité de la donnée surpasse la quantité.**
-Un test maximal de 6 minutes vaut mieux que 6 mois de données de jogging bruitées.
+Utiliser le VDOT nous donne une "Vérité Terrain" solide.
+Demain, quand nous aurons des milliers d'entrainements labellisés (où l'on connait l'intensité prescrite vs réalisée), nous pourrons réintroduire des filtres de Kalman ou du Machine Learning pour affiner ce modèle. Mais cette fois, l'IA ne devra pas *deviner* dans le vide : elle aura une base solide pour travailler.
+
+Pour l'instant, nous parions sur la fiabilité. 
+Un test de 6 minutes vaut mieux que 6 mois de données mal interprétées.
