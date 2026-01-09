@@ -1,10 +1,10 @@
-# Pourquoi on a jeté notre "IA" à la poubelle (pour une formule de 1979)
+# Pourquoi on a jeté notre "IA" à la poubelle (pour une méthode éprouvée)
 
 Quand on lance une startup Tech en 2025, la tentation est grande de mettre de l'"IA" et du Machine Learning partout.
 C'est vendeur, c'est "hype", et ça flatte l'ego technique.
 
 C'est exactement le piège dans lequel je suis tombé avec **Momentum Coach**.
-Je voulais construire le moteur de recommandation le plus avancé du marché. Résultat ? J'ai fini par tout jeter pour utiliser une formule vieille de 45 ans.
+Je voulais construire le moteur de recommandation le plus avancé du marché. Résultat ? J'ai fini par tout jeter pour utiliser une méthodologie qui a fait ses preuves sur des milliers d'athlètes olympiques et amateurs.
 
 Voici l'histoire technique de ce pivot, et pourquoi la simplicité gagne toujours, même face aux algorithmes les plus sophistiqués.
 
@@ -36,6 +36,7 @@ Le modèle se base sur deux équations matricielles :
 ### La Promesse : "Live & Continuous Update"
 La grande force théorique de ce modèle est sa capacité à se mettre à jour en continu, sans nouveau test maximal.
 L'algorithme ingère chaque sortie :
+
 *   Si vous courez votre footing habituel à 10km/h mais avec 5 puls/min de moins que d'habitude...
 *   Le filtre détecte une réduction de l'erreur entre la prédiction et la mesure.
 *   Il met à jour sa "Croyance" : votre endurance fondamentale s'est améliorée -> **votre Seuil a augmenté**.
@@ -56,8 +57,8 @@ J'avais construit une usine à gaz qui essayait de deviner la VMA d'un coureur �
 
 ## 2. Le Retour aux Sources : VDOT (Daniels & Gilbert, 1979)
 
-Fatigué de debugger mes matrices de covariance, j'ai ouvert un livre classique : *"Daniel's Running Formula"*.
-Le Dr Jack Daniels (physiologiste, médaillé olympique) et le mathématicien Jimmy Gilbert ont publié leurs travaux dès 1979 (*"Oxygen Power"*).
+Fatigué de debugger mes matrices de covariance, j'ai ouvert un livre de référence : *"Daniel's Running Formula"*.
+Le Dr Jack Daniels (physiologiste, médaillé olympique) et le mathématicien Jimmy Gilbert ont publié des travaux fondamentaux qui sont encore aujourd'hui la base de l'entraînement moderne.
 
 Leur approche est aux antipodes du Big Data : **Peu de données, mais de la donnée de haute qualité.**
 
@@ -99,6 +100,7 @@ Nous avons donc remplacé notre filtre de Kalman instable par un protocole simpl
 
 ### Pourquoi 1600m ?
 Nous demandons un test de 1600m car c'est :
+
 1.  **Facile à caser** : Ça prend moins de 15 minutes échauffement compris.
 2.  **Facile à récupérer** : Contrairement à un 5km ou 10km à fond, ça ne casse pas l'athlète pour la semaine.
 3.  **Suffisant** : Mathématiquement, la corrélation est déjà excellente.
@@ -107,6 +109,7 @@ Bien sûr, si vous venez de courir un 10km ou un semi-marathon en compétition (
 
 ### Étude de Cas : Arthur (Marathon de Barcelone)
 Arthur, mon associé, a servi de cobaye.
+
 *   **Test 1600m** : Réalisé en 5:50.
 *   **Calcul VDOT** : L'algo sort un VDOT de 51.
 *   **Prédiction Seuil** : D'après les tables, son allure seuil (Threshold Pace) doit être **3:50/km**.
@@ -116,15 +119,18 @@ Je lui donne une consigne stricte : *"Ne regarde pas ta montre. Cours à la sens
 
 Je voulais vérifier si la prédiction mathématique collait à sa physiologie réelle du moment.
 Les données Strava sont tombées :
+
 *   Bloc 1 : **3:53/km** (Un poil prudent)
 *   Bloc 2 : **3:51/km** ( Ça se règle)
 *   Bloc 3 : **3:50/km** (Pile dessus)
 
-![Arthur Splits 1](./images/arthur-split-1.png)
-![Arthur Splits 2](./images/arthur-split-2.png)
+<div style="display: flex; gap: 10px; justify-content: center;">
+  <img src="../images/arthur-split-1.png" width="300" />
+  <img src="../images/arthur-split-2.png" width="300" />
+</div>
 
 La précision est effrayante. Arthur s'est calé naturellement sur l'allure cible, sans même la connaître.
-Mon filtre de Kalman, avec ses milliers de points de données bruyants, n'avait jamais réussi à prédire une allure avec une telle fiabilité. Une simple formule de 1979, alimentée par une seule donnée de qualité, a visé juste du premier coup.
+Mon filtre de Kalman, avec ses milliers de points de données bruyants, n'avait jamais réussi à prédire une allure avec une telle fiabilité. Une équation simple mais robuste, alimentée par une seule donnée de qualité, a visé juste du premier coup.
 
 ---
 
