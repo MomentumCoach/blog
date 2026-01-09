@@ -4,7 +4,7 @@ Quand on lance une startup Tech en 2025, la tentation est grande de mettre de l'
 C'est vendeur, c'est "hype", et ça flatte l'ego technique.
 
 C'est exactement le piège dans lequel je suis tombé avec **Momentum Coach**.
-Je voulais construire le moteur de recommandation le plus avancé du marché. Résultat ? J'ai réalisé que la complexité n'est pas toujours la réponse. J'ai choisi de bâtir **Momentum Coach** sur une base méthodologique éprouvée (VDOT), gardant l'IA pour ce qu'elle fait de mieux : l'optimisation à la marge.
+Je voulais construire le coach numérique le plus avancé du marché. Résultat ? J'ai réalisé que la complexité n'est pas toujours la réponse. J'ai choisi de bâtir **Momentum Coach** sur une base méthodologique éprouvée (VDOT), gardant l'IA pour ce qu'elle fait de mieux : l'optimisation à la marge.
 
 Voici l'histoire technique de ce pivot, et pourquoi la simplicité gagne toujours, même face aux algorithmes les plus sophistiqués.
 
