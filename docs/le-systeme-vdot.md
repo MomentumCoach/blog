@@ -120,6 +120,9 @@ Les données Strava sont tombées :
 *   Bloc 2 : **3:51/km** ( Ça se règle)
 *   Bloc 3 : **3:50/km** (Pile dessus)
 
+![Arthur Splits 1](./images/arthur-split-1.png)
+![Arthur Splits 2](./images/arthur-split-2.png)
+
 La précision est effrayante. Arthur s'est calé naturellement sur l'allure cible, sans même la connaître.
 Mon filtre de Kalman, avec ses milliers de points de données bruyants, n'avait jamais réussi à prédire une allure avec une telle fiabilité. Une simple formule de 1979, alimentée par une seule donnée de qualité, a visé juste du premier coup.
 
